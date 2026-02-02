@@ -10,28 +10,7 @@
         padding: 0;
         margin: 0;
       }
-      header {
-        display: flex;
-        gap: 20px;
-        justify-content: end;
-        padding-left: 120px;
-        padding-right: 120px;
-        font-size: 11px;
-        font-family: Arial, Helvetica, sans-serif;
-        position: relative;
-      }
-      header p {
-        border-right: 1px solid black;
-        padding-right: 10px;
-        cursor: pointer;
-      }
-      header p:last-child {
-        border-right: none;
-        padding-right: 0;
-      }
-      header p:hover {
-        color: green;
-      }
+
       .navstick {
         position: fixed;
         z-index: 3;
@@ -60,7 +39,7 @@
         font-size: 35px;
         cursor: pointer;
       }
-      .navstick .userlinks {
+      .navstick .options {
         display: flex;
         align-items: center;
         gap: 30px;
@@ -68,10 +47,10 @@
       .navstick .mainlinks p:hover {
         border-bottom: 3px solid green;
       }
-      .navstick .userlinks p:hover {
+      .navstick .options p:hover {
         background-color: rgb(208, 208, 208);
       }
-      .navstick .userlinks img:hover {
+      .navstick .options img:hover {
         background-color: rgb(208, 208, 208);
       }
       .wrapper {
@@ -132,22 +111,18 @@
         display: inline-block;
         border-bottom: 1px solid rgb(183, 183, 183);
       }
-      .news p:last-child {
-        border-bottom: none;
-      }
+
       .scrollrow {
         display: flex;
         gap: 20px;
         overflow-x: auto;
-        scroll-behavior: smooth;
-        scroll-snap-type: x mandatory;
+
         padding-bottom: 10px;
       }
 
       .scrollrow .card {
         width: 190px;
         flex-shrink: 0;
-        scroll-snap-align: start;
       }
       .scrollrow .card img {
         height: 120px;
@@ -164,7 +139,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-52%, -50%);
         color: white;
         text-align: center;
         width: 700px;
@@ -446,12 +421,7 @@
       <p>Contact Us</p>
       <p>Subscribe</p>
     </div>
-    <header>
-      <p>ABOUT US</p>
-      <p>CAREERS</p>
-      <p>CONTACT US</p>
-      <p>SUBSCRIBE</p>
-    </header>
+
     <div class="navstick">
       <div class="mainlinks">
         <img
@@ -467,7 +437,7 @@
         <p>Courses&Events</p>
         <p>News&Insights</p>
       </div>
-      <div class="userlinks">
+      <div class="options">
         <p>Shop</p>
         <p>Sign in</p>
         <img
@@ -858,3 +828,4 @@
     </script>
   </body>
 </html>
+
