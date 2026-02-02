@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      header {
+        display: flex;
+        gap: 20px;
+        justify-content: end;
+        padding-left: 120px;
+        padding-right: 120px;
+        font-size: 11px;
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+      }
+      header p {
+        border-right: 1px solid black;
+        padding-right: 10px;
+        cursor: pointer;
+      }
+      header p:last-child {
+        border-right: none;
+        padding-right: 0;
+      }
+      header p:hover {
+        color: green;
+      }
+      .navstick {
+        position: fixed;
+        z-index: 3;
+        background-color: white;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        width: 100%;
+        padding-left: 120px;
+        padding-right: 120px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgb(231, 231, 231);
+        border-top: 1px solid rgb(231, 231, 231);
+        box-shadow: 0 4px 8px -5px rgba(56, 56, 56, 0.6);
+      }
+      .menu {
+        display: none;
+      }
+      .navstick .mainlinks {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+      .navstick .mainlinks span {
+        font-size: 35px;
+        cursor: pointer;
+      }
+      .navstick .userlinks {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+      .navstick .mainlinks p:hover {
+        border-bottom: 3px solid green;
+      }
+      .navstick .userlinks p:hover {
+        background-color: rgb(208, 208, 208);
+      }
+      .navstick .userlinks img:hover {
+        background-color: rgb(208, 208, 208);
+      }
+      .wrapper {
+        padding-top: 40px;
+        padding-left: 120px;
+        padding-right: 120px;
+      }
+      .topgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+      }
+      .card strong {
+        color: green;
+        font-size: 13px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .card strong:hover {
+        border-bottom: 2px solid green;
+      }
+      .card h1 {
+        font-size: 20px;
+      }
+      .card h1:hover {
+        border-bottom: 2px solid green;
+      }
+      .card p {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .mixbox {
+        display: flex;
+        gap: 10px;
+      }
+      .midgrid {
+        display: grid;
+        grid-template-columns: repeat(3, 260px);
+        gap: 20px;
+      }
+      .midgrid .card img {
+        height: 130px;
+      }
+      .news h1 {
+        margin: 0;
+      }
+      .news p {
+        width: 350px;
+        border-left: 3px solid green;
+        font-weight: bold;
+        padding: 10px;
+        font-size: 16px;
+        display: inline-block;
+        border-bottom: 1px solid rgb(183, 183, 183);
+      }
+      .news p:last-child {
+        border-bottom: none;
+      }
+      .scrollrow {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 10px;
+      }
+
+      .scrollrow .card {
+        width: 190px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+      }
+      .scrollrow .card img {
+        height: 120px;
+      }
+      .hero {
+        position: relative;
+      }
+      .hero img {
+        box-sizing: border-box;
+        width: 100%;
+        height: 380px;
+      }
+      .hero .info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        width: 700px;
+      }
+      .info strong {
+        font-family: Arial, Helvetica, sans-serif;
+        color: green;
+        font-size: 12px;
+      }
+      .info h1 {
+        font-size: 47px;
+      }
+      .info p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+      }
+      .info button {
+        background-color: green;
+        color: black;
+        border: none;
+        padding: 10px;
+        font-weight: 400;
+        font-size: 12px;
+      }
+      .extra {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 120px;
+        padding-right: 120px;
+        background-color: rgb(240, 240, 240);
+      }
+
+      .extracards {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 10px;
+      }
+
+      .extracards .card {
+        background-color: white;
+        width: 290px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      .extracards .card img {
+        height: 120px;
+      }
+
+      .extracards .card strong {
+        padding-left: 10px;
+      }
+      .extracards .card h1 {
+        padding-left: 10px;
+      }
+      .bio {
+        display: flex;
+        padding-left: 120px;
+        padding-right: 120px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        border-bottom: 4px solid green;
+      }
+      .statgrid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .statgrid h6 {
+        color: green;
+      }
+      .years {
+        grid-row: 1/3;
+        grid-column: 1/2;
+        border: 1px solid rgb(155, 155, 155);
+        border-radius: 10px;
+        padding: 10px;
+      }
+      .reach {
+        grid-row: 1/3;
+        grid-column: 2/3;
+        border: 1px solid rgb(155, 155, 155);
+        border-radius: 10px;
+        padding: 10px;
+      }
+      .users {
+        grid-row: 1/3;
+        grid-column: 3/4;
+        border: 1px solid rgb(155, 155, 155);
+        border-radius: 10px;
+        padding: 10px;
+      }
+      .win {
+        grid-row: 1/3;
+        grid-column: 4/5;
+        border: 1px solid rgb(155, 155, 155);
+        border-radius: 10px;
+        padding: 10px;
+      }
+      .chat {
+        grid-row: 3/4;
+        grid-column: 1/5;
+        border: 1px solid rgb(155, 155, 155);
+        border-radius: 10px;
+        padding: 10px;
+      }
+      footer {
+        padding: 40px;
+        display: flex;
+        justify-content: space-around;
+        align-items: start;
+      }
+      .support {
+        padding-right: 20px;
+        border-right: 1px solid gray;
+      }
+      footer button {
+        background-color: green;
+        color: black;
+        border: none;
+        height: 40px;
+      }
+      input {
+        height: 40px;
+        border: none;
+        width: 400px;
+        background-color: rgb(213, 213, 213);
+      }
+      @media screen and (max-width: 430px) {
+        header {
+          display: none;
+        }
+        .navstick .mainlinks p {
+          display: none;
+        }
+        .navstick .userlinks p {
+          display: none;
+        }
+        .navstick {
+          width: 430px;
+          padding-left: 20px;
+          padding-right: 20px;
+          align-items: center;
+        }
+        .menu {
+          display: flex;
+        }
+        .wrapper {
+          padding-top: 20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .mixbox {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .midgrid {
+          display: grid;
+          grid-template-columns: repeat(1, 400px);
+          gap: 20px;
+        }
+        .midgrid .card img {
+          height: 100px;
+          width: 120px;
+        }
+        .midgrid .card {
+          display: flex;
+          gap: 10px;
+        }
+        .hero img {
+          height: 430px;
+        }
+        .hero .info {
+          width: 400px;
+        }
+        .extra {
+          padding: 20px;
+        }
+        .bio {
+          flex-direction: column;
+          padding: 20px;
+          gap: 10px;
+        }
+        .statgrid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: repeat(3, 1fr);
+          gap: 20px;
+        }
+        .years {
+          grid-row: 1/2;
+          grid-column: 1/2;
+        }
+        .reach {
+          grid-row: 1/2;
+          grid-column: 2/3;
+        }
+        .users {
+          grid-row: 2/3;
+          grid-column: 1/2;
+        }
+        .win {
+          grid-row: 2/3;
+          grid-column: 2/3;
+        }
+        .chat {
+          grid-row: 3/4;
+          grid-column: 1/3;
+        }
+        footer {
+          flex-direction: column;
+        }
+        .support {
+          border-right: none;
+        }
+        input {
+          height: 40px;
+          border: none;
+          width: 250px;
+          background-color: rgb(213, 213, 213);
+        }
+        .row {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+      .hiddenmenu {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        align-items: start;
+        justify-content: start;
+        font-family: Arial, Helvetica, sans-serif;
+        position: absolute;
+        font-size: 15px;
+
+        padding-top: 100px;
+        padding-left: 50px;
+        padding-right: 230px;
+        height: 1200px;
+        gap: 15px;
+      }
+      .hiddenmenu p {
+        margin: 0%;
+      }
+      .hiddenmenu p:hover {
+        border-bottom: 1px solid green;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hiddenmenu hidden">
+      <p>Workplace Advisory</p>
+      <p>CliftonStrenghts</p>
+      <p>Research & Polling</p>
+      <p>Courses & Events</p>
+      <p>News & Insights</p>
+      <p>Shop</p>
+      <p
+        style="
+          border-bottom: 1px solid black;
+          padding-bottom: 30px;
+          margin-bottom: 20px;
+          width: 300px;
+        "
+      >
+        Sign In
+      </p>
+
+      <p>About Us</p>
+      <p>Careers</p>
+      <p>Contact Us</p>
+      <p>Subscribe</p>
+    </div>
+    <header>
+      <p>ABOUT US</p>
+      <p>CAREERS</p>
+      <p>CONTACT US</p>
+      <p>SUBSCRIBE</p>
+    </header>
+    <div class="navstick">
+      <div class="mainlinks">
+        <img
+          class="menu"
+          style="width: 30px; height: 30px"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/250px-Hamburger_icon.svg.png"
+          alt=""
+        />
+        <span>GALLUP</span>
+        <p>Workplace Advisory</p>
+        <p>CliftonStrenghts</p>
+        <p>Research&Polling</p>
+        <p>Courses&Events</p>
+        <p>News&Insights</p>
+      </div>
+      <div class="userlinks">
+        <p>Shop</p>
+        <p>Sign in</p>
+        <img
+          style="width: 50px; height: 50px"
+          src="https://static.thenounproject.com/png/1594159-200.png"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="topgrid">
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12featcont_lg_2x/WORKPLACEV9CMS/7a74f2ba-4b22-45ff-80c9-5f6aaab6937f.jpg"
+            alt=""
+          />
+          <strong>WORKPLACE</strong>
+          <h1>U.S. Employee Engagement Declines From 2020 Peak</h1>
+          <p>
+            Employee engagement has fallen from its 2020 peak, with sharp drops
+            among younger workers as role clarity, feeling cared about and
+            development erode.
+          </p>
+        </div>
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12featcont_lg_2x/WORKPLACEV9CMS/2be50415-4732-4327-b6c9-55b55690c296.jpg"
+            alt=""
+          />
+          <strong>WORKPLACE</strong>
+          <h1>Frequent Use of AI in the Workplace Continued to Rise in Q4</h1>
+          <p>
+            Frequent use of AI in the workplace has continued to rise, while
+            overall use has remained level. Use varies widely by industry, role
+            type and job level.
+          </p>
+        </div>
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12featcont_lg_2x/WORKPLACEV9CMS/be41be16-6287-4f7a-b2f1-336b5426a11a.jpg"
+            alt=""
+          />
+          <strong>WORKPLACE</strong>
+          <h1>Span of Control: What's the Optimal Team Size for Managers?</h1>
+          <p>
+            The ideal span of control isn't universal. Gallup research shows
+            that a manager's talent and how they spend their time affect
+            performance when managing larger teams.
+          </p>
+        </div>
+      </div>
+      <div class="mixbox">
+        <div class="midgrid">
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12featcont_md_2x/POLL/777e469b-840d-4ed1-8822-1d3dc48b406c.jpg"
+              alt=""
+            />
+            <div class="details">
+              <strong>WORLD</strong>
+              <h1>U.S. Leadership Approval Drops Among NATO Allies</h1>
+              <p>
+                U.S. leadership approval within NATO countries fell sharply in
+                2025, dropping 14 percentage points to 21%.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12featcont_md_2x/WORKPLACEV9CMS/d0119b53-ee5f-4f68-8aa7-24a6d40a899a.jpg"
+              alt=""
+            />
+            <div class="details">
+              <strong>WORKPLACE</strong>
+              <h1>When Good Frontline Workers Make Bad Supervisors</h1>
+              <p>
+                Promoting top frontline performers into supervisors can
+                backfire. Gallup data show why promoting based on supervisory
+                talent and offering managerial training matters.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12featcont_md_2x/POLL/6baee0b1-e0c3-4ab4-b7fa-701061eb6544.jpg"
+              alt=""
+            />
+            <div class="details">
+              <strong>POLITICS</strong>
+              <h1>
+                New High of 45% in U.S. Identify as Political Independents
+              </h1>
+              <p>
+                A new high of 45% of U.S. adults identified as political
+                independents in 2025.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="news">
+          <h1>Trending Insights</h1>
+          <p>Volunteerism Has Recovered From Pandemic Low</p>
+          <p>Perceived Threat From Big Business Growing</p>
+          <p>How Russia's and Ukraine's Neighbors See Them</p>
+          <p>EU Earns Steady, High Approval Across the Bloc</p>
+          <p>Nurses Continue to Lead in Honesty and Ethics Ratings</p>
+        </div>
+      </div>
+      <div class="stats">
+        <h1>Global Indicators</h1>
+        <p>
+          Measuring progress on what matters most to workplaces and societies at
+          large.
+        </p>
+        <div class="scrollrow">
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/POLL/471420f1-085d-4044-84d2-599f4eeba02a.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Employee Engagement</h1>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/WWWV7CMS/e0794380-c525-4759-ac45-768ead5d5e33.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Artificial Intelligence</h1>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/POLL/6b809055-5216-480f-8d09-3c71e4ffda08.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Hybrid Work</h1>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/POLL/eabde59c-9ddd-42b7-be86-695c7a35e413.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Economic Performance and Financial Security</h1>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/POLL/ebdc95bc-515d-4a52-84c4-8b0c5d77e55b.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Life Evaluation Index</h1>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/POLL/987771ce-3e71-4518-aa37-3c119ab24be5.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Employee Retention & Attraction</h1>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/POLL/ab51df31-1bc5-4568-a408-75fb31b9e74a.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Employee Wellbeing</h1>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/POLL/a0dcaabc-be65-4497-965f-dda84886a9b8.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Leadership & Management</h1>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/POLL/fe073233-dcb9-4906-8012-491b6e2b1d05.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Leadership Approval and Trust in Institutions</h1>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/POLL/11f3ea4a-004d-432c-8906-27aef3cb0702.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Emotional Wellbeing</h1>
+          </div>
+          <div class="card">
+            <img
+              src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/POLL/99698ec4-8be6-43a4-a20d-363c8075b714.png"
+              alt=""
+            />
+            <strong>INDICATOR</strong>
+            <h1>Organizational Culture</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero">
+      <img
+        src="https://imagekit.gallup.com/fusion/tr:n-emd_tmpl_dlp_bg_lg_2x/ANALYTICSV9CMS/a91784da-8ccf-4604-9db3-25da924a15b6.jpg"
+        alt=""
+      />
+      <div class="info">
+        <strong>FEATURED RESEARCH</strong>
+        <h1>West Health-Gallup Center on Healthcare</h1>
+        <p>
+          The West Health-Gallup Center on Healthcare in America delivers
+          rigorous research and data-driven insights to elevate public voices
+          and drive meaningful conversations about the nation's healthcare
+          system.
+        </p>
+        <button>VISIT THE CENTER</button>
+      </div>
+    </div>
+
+    <div class="extra">
+      <h1>More Reports</h1>
+
+      <div class="extracards">
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/WORKPLACEV9CMS/9c012f70-5c0a-49b1-96a6-13a94aaf2cd9.jpg"
+            alt=""
+          />
+          <strong>REPORT</strong>
+          <h1>State of the Global Workplace 2025</h1>
+        </div>
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/ANALYTICSV9CMS/c788bbc9-8278-441d-acc7-7e697a7d6b67.jpg"
+            alt=""
+          />
+          <strong>REPORT</strong>
+          <h1>State of the World’s Emotional Health 2025</h1>
+        </div>
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/ANALYTICSV9CMS/8553f35f-4269-4311-9790-3650823bfca1.jpg"
+            alt=""
+          />
+          <strong>REPORT</strong>
+          <h1>World Happiness Report</h1>
+        </div>
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/ANALYTICSV9CMS/1f0a4948-364c-48ed-afa7-006ec8799f09.jpg"
+            alt=""
+          />
+          <strong>REPORT</strong>
+          <h1>Global Insights on Leadership</h1>
+        </div>
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/ANALYTICSV9CMS/897377d4-a9ae-4511-aac9-cb4524128412.jpg"
+            alt=""
+          />
+          <strong>REPORT</strong>
+          <h1>Global Safety Report</h1>
+        </div>
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/ANALYTICSV9CMS/c3e8ff50-b228-4967-a6b2-8b1ccc7478dd.jpg"
+            alt=""
+          />
+          <strong>REPORT</strong>
+          <h1>Raiting World Leaders Report</h1>
+        </div>
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/ANALYTICSV9CMS/dadf68c0-dfd0-402f-8971-7e3f1f6aa45d.jpg"
+            alt=""
+          />
+          <strong>REPORT</strong>
+          <h1>The State of Higher Education 2025</h1>
+        </div>
+        <div class="card">
+          <img
+            src="https://imagekit.gallup.com/fusion/tr:n-emd_wp_v12slider_2x/ANALYTICSV9CMS/fd75ab8d-8e0f-43fc-ac8a-fc9d0a56d9a3.jpg"
+            alt=""
+          />
+          <strong>REPORT</strong>
+          <h1>
+            Teaching for Tomorrow: How Supporting Teachers Today Shapes
+            Classrooms Tomorrow
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div class="bio">
+      <div class="intro">
+        <strong>ABOUT GALLUP</strong>
+        <h1>Analytics & Advice That Empower Leaders</h1>
+        <p>
+          We provide data no one else has, to help you make decisions no one
+          else can. And we go beyond research to help your organization maximize
+          human potential.
+        </p>
+        <strong>LEARN MORE ABOUT US</strong>
+      </div>
+      <div class="statgrid">
+        <div class="years">
+          <h6>OUR EXPERIENCE</h6>
+          <h1>90+ years</h1>
+          <p>of public opinion survey research expertise.</p>
+          <strong>See our latest insights</strong>
+        </div>
+        <div class="reach">
+          <h6>OUR SCALE</h6>
+          <h1>98%+</h1>
+          <p>
+            of the world's population is represented by Gallup's World Poll.
+          </p>
+          <strong>Learn about our global research</strong>
+        </div>
+        <div class="users">
+          <h6>OUR CLIENTS</h6>
+          <h1>4,000+</h1>
+          <p>organizations use our workplace performance platform.</p>
+          <strong>Explore the gallup access platform</strong>
+        </div>
+        <div class="win">
+          <h6>OUR IMPACT</h6>
+          <h1>36M+</h1>
+          <p>people have discovered their CliftonStrengths</p>
+          <strong>Learn about the CliftonStrengths assessment</strong>
+        </div>
+        <div class="chat">
+          <h1>Connect With Us</h1>
+          <p>Learn how we can help you solve your most important challenges.</p>
+          <strong>Connect Us</strong>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <h1>GALLUP</h1>
+      <div class="links">
+        <p>About Us</p>
+        <p>Careers</p>
+        <p>Locations</p>
+        <p>News</p>
+        <p>Store</p>
+      </div>
+      <div class="support">
+        <p>Media Center</p>
+        <p>Gallup Speakers</p>
+        <p>Customer Support</p>
+        <button>CONTACT US</button>
+      </div>
+      <div class="mail">
+        <p>Subscribe to Our Latest Insights</p>
+        <div class="row">
+          <input type="text" placeholder="Your Email Address" />
+          <button>SIGN UP</button>
+        </div>
+      </div>
+    </footer>
+    <script>
+      let menu = document.querySelector(".menu");
+      let hiddenmenu = document.querySelector(".hiddenmenu");
+
+      menu.addEventListener("click", function () {
+        hiddenmenu.classList.toggle("hidden");
+
+        if (
+          menu.getAttribute("src") ===
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/250px-Hamburger_icon.svg.png"
+        ) {
+          menu.setAttribute(
+            "src",
+            "https://cdn-icons-png.flaticon.com/512/657/657059.png"
+          );
+        } else {
+          menu.setAttribute(
+            "src",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/250px-Hamburger_icon.svg.png"
+          );
+        }
+      });
+    </script>
+  </body>
+</html>
